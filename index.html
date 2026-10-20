@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Konverter file minimalis untuk PDF, DOCX, CSV, Excel, Gambar (PNG, JPG, WEBP), dan Teks langsung di browser Anda.">
+  <title>File Converter &bull; Minimalist &amp; Fast</title>
+  
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Minimal Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo" id="site-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+        <span>Convert<span style="color: var(--accent);">Sphere</span></span>
+        <span class="logo-badge">Minimal</span>
+      </a>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Ganti Tema">
+          <span class="theme-icon">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Minimal Hero -->
+      <section class="hero">
+        <h1 class="hero-title">Konverter File Cepat &amp; Minimalis</h1>
+        <p class="hero-subtitle">
+          Ubah format dokumen, data, dan gambar secara langsung di browser tanpa watermark atau unggah server.
+        </p>
+      </section>
+
+      <!-- Supported Formats Bar -->
+      <div class="format-chips-bar" aria-label="Format yang didukung">
+        <span class="chip-item"><span class="chip-dot pdf"></span> PDF</span>
+        <span class="chip-item"><span class="chip-dot doc"></span> DOCX / DOC</span>
+        <span class="chip-item"><span class="chip-dot csv"></span> CSV / XLSX</span>
+        <span class="chip-item"><span class="chip-dot img"></span> PNG / JPG / WEBP</span>
+        <span class="chip-item"><span class="chip-dot" style="background:#f59e0b;"></span> JSON / TXT</span>
+      </div>
+
+      <!-- Focused Dropzone -->
+      <div class="dropzone-box" id="dropzone" tabindex="0" role="button" aria-label="Unggah file di sini">
+        <input 
+          type="file" 
+          id="file-input" 
+          multiple 
+          style="display: none;" 
+          accept=".pdf,.doc,.docx,.csv,.xlsx,.json,.txt,.md,.html,.png,.jpg,.jpeg,.webp,.svg,.bmp"
+        >
+        
+        <div class="dropzone-icon-circle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+
+        <h2 class="dropzone-title">Tarik &amp; lepas file ke sini</h2>
+        <p class="dropzone-desc">Mendukung PDF, Word (DOCX), Spreadsheet (CSV/Excel), Gambar, dan Teks</p>
+
+        <button type="button" class="btn-upload" id="browse-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          Pilih File dari Komputer
+        </button>
+
+        <div class="paste-hint">
+          Bisa juga langsung tempel dari clipboard dengan <kbd>Ctrl</kbd> + <kbd>V</kbd>
+        </div>
+      </div>
+
+      <!-- Queue Section -->
+      <section class="queue-card" id="queue-section" style="display: none;">
+        <div class="queue-topbar">
+          <div class="queue-title-area">
+            <span>Daftar File</span>
+            <span class="queue-pill-count" id="queue-count">0</span>
+          </div>
+          <div class="queue-actions-group">
+            <button class="btn-text-action" id="btn-clear-all" type="button">
+              Bersihkan
+            </button>
+            <button class="btn-primary-action" id="btn-convert-all" type="button">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Konversi Semua
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic File List -->
+        <div class="file-items-list" id="file-list"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 ConvertSphere &bull; 100% Client-side &amp; Privat Tanpa Upload Server</p>
+    </div>
+  </footer>
+
+  <!-- Toast Floating Container -->
+  <div class="toast-wrap" id="toast-wrap" aria-live="polite"></div>
+
+  <!-- Real Client-Side Conversion Engines -->
+  <!-- 1. PDF.js for authentic PDF rendering and text extraction -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- 2. jsPDF for genuine PDF generation (Images, Documents, Data to PDF) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- 3. Mammoth.js for genuine Word (DOCX) parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <!-- 4. SheetJS (xlsx) for genuine Excel (XLSX) and CSV conversion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
